@@ -1,0 +1,20 @@
+
+angular is wrapped by an express server for prod deployment on Heroku
+
+    to build prod for express server
+    ng build --aot --prod
+
+    to run prod express server on localhost:8080
+    node server.js       
+
+    to run local ng dev server on localhost:4200
+    ng serve
+
+
+To Reduce a Large Heroku Slug Size
+    heroku plugins:install heroku-repo
+
+    heroku repo:gc --app your-app-name
+    heroku repo:purge_cache --app your-app-name
+
+
