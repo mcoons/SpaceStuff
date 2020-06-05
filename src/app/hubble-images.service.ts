@@ -23,11 +23,11 @@ export class HubbleImagesService {
   // collection - 
   // page - 
    getAllImages(): Observable<HubbleImage[]> {
-    return this.httpClient.jsonp<HubbleImage[]>('http://hubblesite.org/api/v3/images?page=2', 'callback');
+    return this.httpClient.jsonp<HubbleImage[]>('//hubblesite.org/api/v3/images?page=2', 'callback');
    }
 
    getImage(id: number): Observable<HubbleImageDetail>  {
-    return this.httpClient.jsonp<HubbleImageDetail>('http://hubblesite.org/api/v3/image/' + id.toString(), 'callback');
+    return this.httpClient.jsonp<HubbleImageDetail>('//hubblesite.org/api/v3/image/' + id.toString(), 'callback');
    }
 
 }
