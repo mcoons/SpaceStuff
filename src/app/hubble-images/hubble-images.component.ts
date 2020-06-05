@@ -16,6 +16,8 @@ export class HubbleImagesComponent implements OnInit {
 
   constructor( private hubbleImagesService: HubbleImagesService ) {
     this.hubbleImagesDetailArray = [];
+
+
   }
 
   ngOnInit(): void {
@@ -33,10 +35,18 @@ export class HubbleImagesComponent implements OnInit {
       }
     );
 
+
     setTimeout(
       () => { console.log(this.hubbleImagesDetailArray); }
       , 5000) ;
 
   }
 
+  truncate(value: string, limit = 25, completeWords = true, ellipsis = '…') {
+    let lastindex = limit;
+    if (completeWords) {
+      lastindex = value.substr(0, limit).lastIndexOf(' ');
+    }
+    return `${value.substr(0, limit)}${ellipsis}`;
+  }
 }

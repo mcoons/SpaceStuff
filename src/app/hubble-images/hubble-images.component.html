@@ -1,1 +1,28 @@
 <p>hubble-images works!</p>
+<tbody>
+    <div class="card-columns">
+  <div *ngFor="let image of this.hubbleImagesDetailArray">
+
+
+      <div class="card">
+        <img class="card-img-top" [src]="image.image_files[0].file_url" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{image.name}}</h5>
+          <p class="card-text" *ngIf="image.description != null"
+            [innerHTML]="this.truncate(image.description, 200, true, '…')"></p>
+        </div>
+        <!-- <ul class="list-group list-group-flush">
+              <li class="list-group-item">Cras justo odio</li>
+              <li class="list-group-item">Dapibus ac facilisis in</li>
+              <li class="list-group-item">Vestibulum at eros</li>
+            </ul> -->
+        <!-- <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div> -->
+      </div>
+
+    </div>
+
+  </div>
+</tbody>
