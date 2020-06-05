@@ -20,6 +20,8 @@ export class HubbleImagesService {
     private httpClient: HttpClient
      ) {}
 
+  // collection - 
+  // page - 
    getAllImages(): Observable<HubbleImage[]> {
     return this.httpClient.jsonp<HubbleImage[]>('http://hubblesite.org/api/v3/images?page=2', 'callback');
    }
