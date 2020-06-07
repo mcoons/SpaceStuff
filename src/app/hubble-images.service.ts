@@ -1,12 +1,9 @@
-// project.service in tutorial
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// import { HttpClientModule } from '@angular/common/http';
-
-// import { Observable } from 'rxjs';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+
 import { HubbleImage } from './hubble-image';
 import { HubbleImageDetail } from './hubble-image-detail';
 
@@ -16,9 +13,7 @@ import { HubbleImageDetail } from './hubble-image-detail';
 })
 export class HubbleImagesService {
 
-  constructor( 
-    private httpClient: HttpClient
-     ) {}
+  constructor( private httpClient: HttpClient) {}
 
   // collection - 
   // page - 

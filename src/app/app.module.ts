@@ -1,10 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import { HttpModule } from '@angular/http';
-// import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientJsonpModule } from '@angular/common/http';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +23,6 @@ import { HubbleImagesComponent } from './hubble-images/hubble-images.component';
     NavbarComponent,
     BabylonComponent,
     HubbleImagesComponent,
-    // HttpClient
   ],
   imports: [
     HttpClientModule,
@@ -35,7 +31,6 @@ import { HubbleImagesComponent } from './hubble-images/hubble-images.component';
     AppRoutingModule
   ],
   providers: [
-        // HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

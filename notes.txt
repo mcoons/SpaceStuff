@@ -18,3 +18,40 @@ To Reduce a Large Heroku Slug Size
     heroku repo:purge_cache --app your-app-name
 
 
+
+FROM  https://www.programmableweb.com/category/all/apis?keyword=space
+
+https://www.programmableweb.com/api/space-trackorg
+https://www.programmableweb.com/api/space-telescope-science-institute
+https://www.programmableweb.com/api/nasa-space-sounds
+https://www.programmableweb.com/api/space-launch-now
+https://www.programmableweb.com/api/space-physics-interactive-data-resource
+https://www.programmableweb.com/api/astrometry-perihelion
+https://www.programmableweb.com/api/launch-library
+https://www.programmableweb.com/api/nasa-satellite-situation-center
+https://www.programmableweb.com/api/nasa-predict-sky
+https://www.programmableweb.com/api/nasa-ssdcneos-nhats
+https://www.programmableweb.com/api/where-iss
+https://www.programmableweb.com/api/open-notify
+https://www.programmableweb.com/api/realearth
+https://www.programmableweb.com/api/astro-digital
+https://www.programmableweb.com/api/wikisky
+https://www.programmableweb.com/api/auroras.live
+https://www.programmableweb.com/api/spizter-heritage-archive
+https://www.programmableweb.com/api/datanasagov
+https://www.programmableweb.com/api/nasa-laads-web-service-classic
+https://www.programmableweb.com/api/nasa-planetary-data-systems-pds
+https://www.programmableweb.com/api/national-map-elevation-query
+https://www.programmableweb.com/api/nasa-eos-metadata-clearninghouse-echo
+https://www.programmableweb.com/api/national-virtual-observatory
+https://www.programmableweb.com/api/mngeo-composite-image
+
+
+
+
+
+
+Creating Mongo DB
+
+heroku addons:create mongolab
+

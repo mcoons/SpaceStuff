@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HubbleImagesService } from '../hubble-images.service';
+import { HubbleSiteService } from '../hubble-site.service';
 import { HubbleImage } from '../hubble-image';
 import { HubbleImageDetail } from '../hubble-image-detail';
 
@@ -10,37 +10,73 @@ import { HubbleImageDetail } from '../hubble-image-detail';
 })
 export class HubbleImagesComponent implements OnInit {
 
-  hubbleImages: HubbleImage[];
-  hubbleImage: HubbleImageDetail;
+  hubbleIndex: HubbleImage[];
+  hubbleImageDetail: HubbleImageDetail;
   hubbleImagesDetailArray: HubbleImageDetail[];
 
-  constructor( private hubbleImagesService: HubbleImagesService ) {
+  page = 1;
+  collections: [];
+  totalImages: number;
+
+  constructor( private hubbleSiteService: HubbleSiteService ) {
     this.hubbleImagesDetailArray = [];
-
-
   }
 
   ngOnInit(): void {
-    this.hubbleImagesService.getAllImages().subscribe (
-      (response: HubbleImage[]) => {
-        response.forEach(
-          (image) => {
-            this.hubbleImagesService.getImage(image.id).subscribe (
-              (response2: HubbleImageDetail) => {
-                this.hubbleImagesDetailArray.push(response2);
-              }
-            );
-          }
-        );
-      }
-    );
+    this.getImageIndex();
 
 
-    setTimeout(
-      () => { console.log(this.hubbleImagesDetailArray); }
-      , 5000) ;
+    // setTimeout(
+    //   () => { console.log(this.hubbleImagesDetailArray); }
+    //   , 5000) ;
 
   }
+
+  getImageIndex() {
+    this.hubbleSiteService.getAllImages(1).subscribe (
+      (response: HubbleImage[]) => {
+        this.hubbleIndex = response;
+        console.log('Hubble Index');
+        console.log(this.hubbleIndex);
+        this.loadImages(this.hubbleIndex, this.page);
+
+      });
+  }
+
+  // loadImages(page: number) {
+  //   this.hubbleSiteService.getAllImages(page).subscribe (
+  //     (response: HubbleImage[]) => {
+  //       response.forEach(
+  //         (image) => {
+  //           this.hubbleSiteService.getImage(image.id).subscribe (
+  //             (response2: HubbleImageDetail) => {
+  //               this.hubbleImagesDetailArray.push(response2);
+  //             }
+  //           );
+  //         }
+  //       );
+  //     }
+  //   );
+  // }
+
+  showIndex() {
+
+  }
+
+  loadImages(collection, page) {
+
+    collection.forEach(
+      (image) => {
+        this.hubbleSiteService.getImage(image.id).subscribe (
+
+          (response: HubbleImageDetail) => {
+            this.hubbleImagesDetailArray.push(response);
+          }
+        );
+       }
+    );
+  }
+
 
   truncate(value: string, limit = 25, completeWords = true, ellipsis = '…') {
     let lastindex = limit;
