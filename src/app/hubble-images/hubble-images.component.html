@@ -1,14 +1,39 @@
 <p>hubble-images works!</p>
 <tbody>
-    <div class="card-columns">
-  <div *ngFor="let image of this.hubbleImagesDetailArray">
+
+  <!-- <form [formGroup]="form" (ngSubmit)="submit()">
+          
+    <div class="form-group">
+        <label for="website">Website:</label>
+        <select formControlName="website" class="form-control" (change)="changeWebsite($event)">
+            <option disabled>Select Website</option>
+            <option>Choose Website</option>
+            <option *ngFor="let web of websiteList">{{web}}</option>
+        </select>
+        <div *ngIf="f.website.touched && f.website.invalid" class="alert alert-danger">
+            <div *ngIf="f.website.errors.required">Name is required.</div>
+        </div>
+    </div>
+  <p>test</p>
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+</form> -->
+
+
+
+  <div class="card-columns">
+    <div *ngFor="let image of this.hubbleSiteService.hubbleImagesDetailArray">
 
       <div class="card">
         <img class="card-img-top" [src]="image.image_files[0].file_url" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{image.name}}</h5>
+ 
           <p class="card-text" *ngIf="image.description != null"
-            [innerHTML]="this.truncate(image.description, 200, true, '…')"></p>
+          [innerHTML]="this.truncate(image.description, 200, true, '…')"></p>
+
+          <!-- <p class="card-text" *ngIf="image.description != null"
+          [innerHTML]="image.description"></p> -->
+
         </div>
         <!-- <ul class="list-group list-group-flush">
               <li class="list-group-item">Cras justo odio</li>

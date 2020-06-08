@@ -53,5 +53,13 @@ https://www.programmableweb.com/api/mngeo-composite-image
 
 Creating Mongo DB
 
-heroku addons:create mongolab
+$heroku create spacestuffbackend
+
+https://spacestuffbackend.herokuapp.com/ | https://git.heroku.com/spacestuffbackend.git
+
+$heroku addons:create mongolab -a spacestuffbackend
+
+Please consult the mLab Add-on Admin UI to check on its progress.
+Created mongolab-animate-52078 as MONGODB_URI
+Use heroku addons:docs mongolab to view documentation
 

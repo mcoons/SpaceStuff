@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HubbleSiteService } from '../hubble-site.service';
-import { HubbleImage } from '../hubble-image';
-import { HubbleImageDetail } from '../hubble-image-detail';
+// import { HubbleImage } from '../hubble-image';
+// import { HubbleImageDetail } from '../hubble-image-detail';
+// import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-hubble-images',
@@ -9,39 +10,57 @@ import { HubbleImageDetail } from '../hubble-image-detail';
   styleUrls: ['./hubble-images.component.css']
 })
 export class HubbleImagesComponent implements OnInit {
-
-  hubbleIndex: HubbleImage[];
-  hubbleImageDetail: HubbleImageDetail;
-  hubbleImagesDetailArray: HubbleImageDetail[];
+  hubbleSiteService: HubbleSiteService;
 
   page = 1;
   collections: [];
   totalImages: number;
+  // pageList = [...Array(this.hubbleSiteService.totalPages).keys()]
 
-  constructor( private hubbleSiteService: HubbleSiteService ) {
-    this.hubbleImagesDetailArray = [];
+
+
+
+
+  // websiteList: any = ['ItSolutionStuff.com', 'HDTuto.com', 'Nicesnippets.com']
+
+  // form = new FormGroup({
+  //   website: new FormControl('', Validators.required)
+  // });
+
+  // get f() {
+  //   return this.form.controls;
+  // }
+
+  // submit() {
+  //   console.log(this.form.value);
+  // }
+  // changeWebsite(e) {
+  //   console.log(e.target.value);
+  // }
+
+
+
+
+
+
+
+  constructor(hubbleSiteService: HubbleSiteService) {
+    this.hubbleSiteService = hubbleSiteService;
   }
 
   ngOnInit(): void {
-    this.getImageIndex();
-
-
-    // setTimeout(
-    //   () => { console.log(this.hubbleImagesDetailArray); }
-    //   , 5000) ;
-
   }
 
-  getImageIndex() {
-    this.hubbleSiteService.getAllImages(1).subscribe (
-      (response: HubbleImage[]) => {
-        this.hubbleIndex = response;
-        console.log('Hubble Index');
-        console.log(this.hubbleIndex);
-        this.loadImages(this.hubbleIndex, this.page);
+  // getImageIndex() {
+  //   this.hubbleSiteService.getAllImages(1).subscribe (
+  //     (response: HubbleImage[]) => {
+  //       this.hubbleIndex = response;
+  //       console.log('Hubble Index');
+  //       console.log(this.hubbleIndex);
+  //       this.loadImages(this.hubbleIndex, this.page);
 
-      });
-  }
+  //     });
+  // }
 
   // loadImages(page: number) {
   //   this.hubbleSiteService.getAllImages(page).subscribe (
@@ -59,23 +78,22 @@ export class HubbleImagesComponent implements OnInit {
   //   );
   // }
 
-  showIndex() {
+  // showIndex() {
+  // }
 
-  }
+  // loadImages(collection, page) {
 
-  loadImages(collection, page) {
+  //   collection.forEach(
+  //     (image) => {
+  //       this.hubbleSiteService.getImage(image.id).subscribe (
 
-    collection.forEach(
-      (image) => {
-        this.hubbleSiteService.getImage(image.id).subscribe (
-
-          (response: HubbleImageDetail) => {
-            this.hubbleImagesDetailArray.push(response);
-          }
-        );
-       }
-    );
-  }
+  //         (response: HubbleImageDetail) => {
+  //           this.hubbleImagesDetailArray.push(response);
+  //         }
+  //       );
+  //      }
+  //   );
+  // }
 
 
   truncate(value: string, limit = 25, completeWords = true, ellipsis = '…') {
