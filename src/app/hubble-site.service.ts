@@ -38,7 +38,7 @@ export class HubbleSiteService {
 
 
   getAllImagesFromDB(page: any): Observable<HubbleImage[]> {
-    const response = this.httpClient.get<HubbleImage[]>('http://localhost:8080/api/images');
+    const response = this.httpClient.get<HubbleImage[]>('https://spacestuffbackend.herokuapp.com/api/images');
     console.log(response);
     console.log("response from db");
     return response;
