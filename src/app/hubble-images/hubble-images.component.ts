@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HubbleSiteService } from '../hubble-site.service';
+import { HubbleImagesService } from './hubble-images.service';
 // import { HubbleImage } from '../hubble-image';
 // import { HubbleImageDetail } from '../hubble-image-detail';
 // import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -10,12 +10,12 @@ import { HubbleSiteService } from '../hubble-site.service';
   styleUrls: ['./hubble-images.component.css']
 })
 export class HubbleImagesComponent implements OnInit {
-  hubbleSiteService: HubbleSiteService;
+  hubbleImagesService: HubbleImagesService;
 
   page = 1;
   collections: [];
   totalImages: number;
-  // pageList = [...Array(this.hubbleSiteService.totalPages).keys()]
+  // pageList = [...Array(this.hubbleImagesService.totalPages).keys()]
 
 
 
@@ -44,15 +44,15 @@ export class HubbleImagesComponent implements OnInit {
 
 
 
-  constructor(hubbleSiteService: HubbleSiteService) {
-    this.hubbleSiteService = hubbleSiteService;
+  constructor(hubbleImagesService: HubbleImagesService) {
+    this.hubbleImagesService = hubbleImagesService;
   }
 
   ngOnInit(): void {
   }
 
   // getImageIndex() {
-  //   this.hubbleSiteService.getAllImages(1).subscribe (
+  //   this.hubbleImagesService.getAllImages(1).subscribe (
   //     (response: HubbleImage[]) => {
   //       this.hubbleIndex = response;
   //       console.log('Hubble Index');
@@ -63,11 +63,11 @@ export class HubbleImagesComponent implements OnInit {
   // }
 
   // loadImages(page: number) {
-  //   this.hubbleSiteService.getAllImages(page).subscribe (
+  //   this.hubbleImagesService.getAllImages(page).subscribe (
   //     (response: HubbleImage[]) => {
   //       response.forEach(
   //         (image) => {
-  //           this.hubbleSiteService.getImage(image.id).subscribe (
+  //           this.hubbleImagesService.getImage(image.id).subscribe (
   //             (response2: HubbleImageDetail) => {
   //               this.hubbleImagesDetailArray.push(response2);
   //             }
@@ -85,7 +85,7 @@ export class HubbleImagesComponent implements OnInit {
 
   //   collection.forEach(
   //     (image) => {
-  //       this.hubbleSiteService.getImage(image.id).subscribe (
+  //       this.hubbleImagesService.getImage(image.id).subscribe (
 
   //         (response: HubbleImageDetail) => {
   //           this.hubbleImagesDetailArray.push(response);

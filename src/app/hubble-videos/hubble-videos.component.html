@@ -1,0 +1,23 @@
+<p>hubble-videos works!</p>
+<tbody>
+
+  <div class="card-columns">
+    <div *ngFor="let video of this.hubbleVideosService.hubbleVideosDetailArray">
+
+      <div class="card">
+        <img class="card-img-top" [src]="video.image" alt="Card video cap">
+        <div class="card-body">
+          <h5 class="card-title">{{video.name}}</h5>
+
+          <p class="card-text" *ngIf="video.short_description != null"
+            [innerHTML]="this.truncate(video.short_description, 200, true, '…')"></p>
+
+        </div>
+        <!-- <div class="card-body">
+          <a href={{video.url}} target="_blank" class="card-link">Full Article</a>
+        </div> -->
+      </div>
+
+    </div>
+
+  </div>

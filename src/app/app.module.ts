@@ -13,6 +13,8 @@ import { AboutComponent } from './about/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BabylonComponent } from './babylon/babylon.component';
 import { HubbleImagesComponent } from './hubble-images/hubble-images.component';
+import { HubbleNewsComponent } from './hubble-news/hubble-news.component';
+import { HubbleVideosComponent } from './hubble-videos/hubble-videos.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { HubbleImagesComponent } from './hubble-images/hubble-images.component';
     NavbarComponent,
     BabylonComponent,
     HubbleImagesComponent,
+    HubbleNewsComponent,
+    HubbleVideosComponent,
   ],
   imports: [
     HttpClientModule,

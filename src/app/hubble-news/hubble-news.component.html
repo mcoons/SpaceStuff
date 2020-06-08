@@ -1,0 +1,26 @@
+<p>hubble-news works!</p>
+<tbody>
+
+  <div class="card-columns">
+    <div *ngFor="let news of this.hubbleNewsService.hubbleNewsDetailArray">
+
+      <div class="card">
+        <img class="card-img-top" [src]="news.keystone_image_1x" alt="Card news cap">
+        <div class="card-body">
+          <h5 class="card-title">{{news.name}}</h5>
+
+          <p class="card-text" *ngIf="news.abstract != null"
+            [innerHTML]="this.truncate(news.abstract, 200, true, '…')"></p>
+
+        </div>
+        <div class="card-body">
+              <a href={{news.url}} target="_blank" class="card-link">Full Article</a>
+              <!-- <a href="#" class="card-link">Another link</a> -->
+            </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</tbody>

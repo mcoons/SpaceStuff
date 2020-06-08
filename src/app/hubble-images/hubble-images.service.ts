@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 import { HubbleImage } from './hubble-image';
 import { HubbleImageDetail } from './hubble-image-detail';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class HubbleSiteService {
+export class HubbleImagesService {
+
 
   private apiRoot = '//hubblesite.org/api/v3/';
   private dbRoot = '';
@@ -18,24 +18,20 @@ export class HubbleSiteService {
   totalItems;
   totalPages;
 
-  hubbleIndex: HubbleImage[];
+  hubbleImageIndex: HubbleImage[];
   hubbleImagesDetailArray: HubbleImageDetail[];
 
-
   constructor(private httpClient: HttpClient) {
-    this.hubbleIndex = [];
+    this.hubbleImageIndex = [];
     this.hubbleImagesDetailArray = [];
     this.getImageIndex();
    }
 
-
-  getAllImages(page: any): Observable<HubbleImage[]> {
-    const response = this.httpClient.jsonp<HubbleImage[]>(this.apiRoot + 'images?page=' + page, 'callback');
-    // console.log(response);
-    return response;
-  }
-
-
+  // getAllImages(page: any): Observable<HubbleImage[]> {
+  //   const response = this.httpClient.jsonp<HubbleImage[]>(this.apiRoot + 'images?page=' + page, 'callback');
+  //   // console.log(response);
+  //   return response;
+  // }
 
   getAllImagesFromDB(page: any): Observable<HubbleImage[]> {
     const response = this.httpClient.get<HubbleImage[]>('https://spacestuffbackend.herokuapp.com/api/images');
@@ -44,9 +40,6 @@ export class HubbleSiteService {
     return response;
   }
 
-
-
-
   getImage(id: number): Observable<HubbleImageDetail> {
     const response =  this.httpClient.jsonp<HubbleImageDetail>(this.apiRoot + 'image/' + id.toString(), 'callback');
     // console.log(response);
@@ -54,16 +47,15 @@ export class HubbleSiteService {
   }
 
   getImageIndex() {
-    // this.getAllImages('all').subscribe (
       this.getAllImagesFromDB('all').subscribe (
         (response: HubbleImage[]) => {
-        this.hubbleIndex = response;
+        this.hubbleImageIndex = response;
 
-        this.totalItems = this.hubbleIndex.length;
+        this.totalItems = this.hubbleImageIndex.length;
         this.totalPages = Math.trunc(this.totalItems / this.pageSize);
 
         console.log('Hubble Index');
-        console.log(this.hubbleIndex);
+        console.log(this.hubbleImageIndex);
         this.loadImages(this.getPageCollection(2));
       });
   }
@@ -79,7 +71,7 @@ export class HubbleSiteService {
       endIndex = this.totalItems;
     }
 
-    const pageCollection = this.hubbleIndex.slice(startIndex, endIndex);
+    const pageCollection = this.hubbleImageIndex.slice(startIndex, endIndex);
 
     return pageCollection;
   }
@@ -96,5 +88,6 @@ export class HubbleSiteService {
        }
     );
   }
+
 
 }

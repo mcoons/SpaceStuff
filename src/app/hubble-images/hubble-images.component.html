@@ -1,27 +1,8 @@
 <p>hubble-images works!</p>
 <tbody>
 
-  <!-- <form [formGroup]="form" (ngSubmit)="submit()">
-          
-    <div class="form-group">
-        <label for="website">Website:</label>
-        <select formControlName="website" class="form-control" (change)="changeWebsite($event)">
-            <option disabled>Select Website</option>
-            <option>Choose Website</option>
-            <option *ngFor="let web of websiteList">{{web}}</option>
-        </select>
-        <div *ngIf="f.website.touched && f.website.invalid" class="alert alert-danger">
-            <div *ngIf="f.website.errors.required">Name is required.</div>
-        </div>
-    </div>
-  <p>test</p>
-    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
-</form> -->
-
-
-
   <div class="card-columns">
-    <div *ngFor="let image of this.hubbleSiteService.hubbleImagesDetailArray">
+    <div *ngFor="let image of this.hubbleImagesService.hubbleImagesDetailArray">
 
       <div class="card">
         <img class="card-img-top" [src]="image.image_files[0].file_url" alt="Card image cap">
@@ -30,9 +11,6 @@
  
           <p class="card-text" *ngIf="image.description != null"
           [innerHTML]="this.truncate(image.description, 200, true, '…')"></p>
-
-          <!-- <p class="card-text" *ngIf="image.description != null"
-          [innerHTML]="image.description"></p> -->
 
         </div>
         <!-- <ul class="list-group list-group-flush">
