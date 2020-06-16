@@ -33,6 +33,21 @@ export class HubbleImagesService {
   //   return response;
   // }
 
+
+  getImageIndex() {
+    this.getAllImagesFromDB('all').subscribe (
+      (response: HubbleImage[]) => {
+      this.hubbleImageIndex = response;
+
+      this.totalItems = this.hubbleImageIndex.length;
+      this.totalPages = Math.trunc(this.totalItems / this.pageSize);
+
+      console.log('Hubble Index');
+      console.log(this.hubbleImageIndex);
+      this.loadImages(this.getPageCollection(5));
+    });
+}
+
   getAllImagesFromDB(page: any): Observable<HubbleImage[]> {
     const response = this.httpClient.get<HubbleImage[]>('https://spacestuffbackend.herokuapp.com/api/images');
     console.log(response);
@@ -40,25 +55,32 @@ export class HubbleImagesService {
     return response;
   }
 
+
+  loadImages(collection) {
+    collection.forEach(
+      (image) => {
+        this.getImage(image.id).subscribe (
+
+          (response: HubbleImageDetail) => {
+            this.hubbleImagesDetailArray.push(response);
+          }
+        );
+       }
+    );
+  }
+
+
+
   getImage(id: number): Observable<HubbleImageDetail> {
     const response =  this.httpClient.jsonp<HubbleImageDetail>(this.apiRoot + 'image/' + id.toString(), 'callback');
     // console.log(response);
+
+    // POST IMAGE DETAIL TO BACKEND - cant use jsonp
+
+
     return response;
   }
 
-  getImageIndex() {
-      this.getAllImagesFromDB('all').subscribe (
-        (response: HubbleImage[]) => {
-        this.hubbleImageIndex = response;
-
-        this.totalItems = this.hubbleImageIndex.length;
-        this.totalPages = Math.trunc(this.totalItems / this.pageSize);
-
-        console.log('Hubble Index');
-        console.log(this.hubbleImageIndex);
-        this.loadImages(this.getPageCollection(2));
-      });
-  }
 
   getPageCollection(page) {
 
@@ -76,18 +98,6 @@ export class HubbleImagesService {
     return pageCollection;
   }
 
-  loadImages(collection) {
-    collection.forEach(
-      (image) => {
-        this.getImage(image.id).subscribe (
-
-          (response: HubbleImageDetail) => {
-            this.hubbleImagesDetailArray.push(response);
-          }
-        );
-       }
-    );
-  }
 
 
 }

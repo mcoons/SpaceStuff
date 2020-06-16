@@ -3,8 +3,13 @@
     height:auto;
 } */
 
+tbody {
+    margin: 10px;
+}
+
 card {
-    display: inline !important;
+    /* display: inline !important; */
+    height: 300px !important;
 }
 
 @media (min-width: 576px) {
