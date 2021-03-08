@@ -1,4 +1,4 @@
-<p>hubble-images works!</p>
+<p>Hubble Images</p>
 <tbody>
 
   <div class="card-columns">
@@ -12,6 +12,14 @@
           <p class="card-text" *ngIf="image.description != null"
           [innerHTML]="this.truncate(image.description, 200, true, '…')"></p>
 
+        </div>
+        <div class="card-body">
+
+          <div *ngFor="let link of image.image_files">
+              <!-- <p>{{link.file_url}}</p> -->
+              <a href={{link.file_url}} target="_blank" rel="noreferrer" class="card-link">Image Link</a> - size {{link.file_size}}
+              
+          </div>
         </div>
         <!-- <ul class="list-group list-group-flush">
               <li class="list-group-item">Cras justo odio</li>

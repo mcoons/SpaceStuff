@@ -14,7 +14,7 @@ export class HubbleImagesService {
   private apiRoot = '//hubblesite.org/api/v3/';
   private dbRoot = '';
   private page = 1;
-  private pageSize = 25;
+  private pageSize = 4;
   totalItems;
   totalPages;
 
@@ -27,16 +27,17 @@ export class HubbleImagesService {
     this.getImageIndex();
    }
 
-  // getAllImages(page: any): Observable<HubbleImage[]> {
-  //   const response = this.httpClient.jsonp<HubbleImage[]>(this.apiRoot + 'images?page=' + page, 'callback');
-  //   // console.log(response);
-  //   return response;
-  // }
+  getAllImages(page: any): Observable<HubbleImage[]> {
+    const response = this.httpClient.jsonp<HubbleImage[]>(this.apiRoot + 'images?page=' + page, 'callback');
+    // console.log(response);
+    return response;
+  }
 
 
   getImageIndex() {
-    this.getAllImagesFromDB('all').subscribe (
-      (response: HubbleImage[]) => {
+    // this.getAllImagesFromDB('all').subscribe (
+      this.getAllImages('all').subscribe (
+        (response: HubbleImage[]) => {
       this.hubbleImageIndex = response;
 
       this.totalItems = this.hubbleImageIndex.length;
@@ -44,17 +45,16 @@ export class HubbleImagesService {
 
       console.log('Hubble Index');
       console.log(this.hubbleImageIndex);
-      this.loadImages(this.getPageCollection(5));
+      this.loadImages(this.getPageCollection(1));
     });
 }
 
-  getAllImagesFromDB(page: any): Observable<HubbleImage[]> {
-    const response = this.httpClient.get<HubbleImage[]>('https://spacestuffbackend.herokuapp.com/api/images');
-    console.log(response);
-    console.log("response from db");
-    return response;
-  }
-
+  // getAllImagesFromDB(page: any): Observable<HubbleImage[]> {
+  //   const response = this.httpClient.get<HubbleImage[]>('https://spacestuffbackend.herokuapp.com/api/images');
+  //   console.log(response);
+  //   console.log("response from db");
+  //   return response;
+  // }
 
   loadImages(collection) {
     collection.forEach(
@@ -63,13 +63,12 @@ export class HubbleImagesService {
 
           (response: HubbleImageDetail) => {
             this.hubbleImagesDetailArray.push(response);
+            console.log(response);
           }
         );
        }
     );
   }
-
-
 
   getImage(id: number): Observable<HubbleImageDetail> {
     const response =  this.httpClient.jsonp<HubbleImageDetail>(this.apiRoot + 'image/' + id.toString(), 'callback');

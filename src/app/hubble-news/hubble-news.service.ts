@@ -14,7 +14,7 @@ export class HubbleNewsService {
   private apiRoot = '//hubblesite.org/api/v3/';
   private dbRoot = '';
   private page = 1;
-  private pageSize = 25;
+  private pageSize = 4; // 25
   totalItems;
   totalPages;
 
@@ -27,11 +27,11 @@ export class HubbleNewsService {
     this.getNewsIndex();
    }
 
-  // getAllnews(page: any): Observable<HubbleNews[]> {
-  //   const response = this.httpClient.jsonp<HubbleNews[]>(this.apiRoot + 'news?page=' + page, 'callback');
-  //   // console.log(response);
-  //   return response;
-  // }
+  getAllnews(page: any): Observable<HubbleNews[]> {
+    const response = this.httpClient.jsonp<HubbleNews[]>(this.apiRoot + 'news?page=' + page, 'callback');
+    // console.log(response);
+    return response;
+  }
 
   getAllNewsFromDB(page: any): Observable<HubbleNews[]> {
     const response = this.httpClient.get<HubbleNews[]>('https://spacestuffbackend.herokuapp.com/api/news');
@@ -47,7 +47,8 @@ export class HubbleNewsService {
   }
 
   getNewsIndex() {
-      this.getAllNewsFromDB('all').subscribe (
+    // this.getAllNewsFromDB('all').subscribe (
+      this.getAllnews('all').subscribe (
         (response: HubbleNews[]) => {
         this.hubbleNewsIndex = response;
 
@@ -56,7 +57,7 @@ export class HubbleNewsService {
 
         console.log('Hubble Index');
         console.log(this.hubbleNewsIndex);
-        this.loadNews(this.getPageCollection(2));
+        this.loadNews(this.getPageCollection(1));
       });
   }
 

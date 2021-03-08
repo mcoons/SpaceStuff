@@ -13,7 +13,7 @@ export class HubbleVideosService {
   private apiRoot = '//hubblesite.org/api/v3/';
   private dbRoot = '';
   private page = 1;
-  private pageSize = 25;
+  private pageSize = 4;
   totalItems;
   totalPages;
 
@@ -27,12 +27,12 @@ export class HubbleVideosService {
   }
 
 
-  getAllVideosFromDB(page: any): Observable<HubbleVideos[]> {
-    const response = this.httpClient.get<HubbleVideos[]>('https://spacestuffbackend.herokuapp.com/api/videos');
-    console.log(response);
-    console.log("response from db");
-    return response;
-  }
+  // getAllVideosFromDB(page: any): Observable<HubbleVideos[]> {
+  //   const response = this.httpClient.get<HubbleVideos[]>('https://spacestuffbackend.herokuapp.com/api/videos');
+  //   console.log(response);
+  //   console.log("response from db");
+  //   return response;
+  // }
 
   getVideos(id: number): Observable<HubbleVideosDetail> {
     const response =  this.httpClient.jsonp<HubbleVideosDetail>(this.apiRoot + 'video/' + id.toString(), 'callback');
@@ -40,17 +40,24 @@ export class HubbleVideosService {
     return response;
   }
 
+  getAllVideos(page: any): Observable<HubbleVideos[]> {
+    const response = this.httpClient.jsonp<HubbleVideos[]>(this.apiRoot + 'videos?page=' + page, 'callback');
+    // console.log(response);
+    return response;
+  }
+
   getVideosIndex() {
-      this.getAllVideosFromDB('all').subscribe (
+    // this.getAllVideosFromDB('all').subscribe (
+      this.getAllVideos('all').subscribe (
         (response: HubbleVideos[]) => {
         this.hubbleVideosIndex = response;
 
         this.totalItems = this.hubbleVideosIndex.length;
         this.totalPages = Math.trunc(this.totalItems / this.pageSize);
 
-        console.log('Hubble Index');
-        console.log(this.hubbleVideosIndex);
-        this.loadVideos(this.getPageCollection(2));
+        // console.log('Hubble Index');
+        // console.log(this.hubbleVideosIndex);
+        this.loadVideos(this.getPageCollection(1));
       });
   }
 
@@ -77,6 +84,8 @@ export class HubbleVideosService {
 
           (response: HubbleVideosDetail) => {
             this.hubbleVideosDetailArray.push(response);
+            console.log(response);
+
           }
         );
        }
