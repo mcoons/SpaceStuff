@@ -14,7 +14,7 @@ export class HubbleNewsService {
   private apiRoot = '//hubblesite.org/api/v3/';
   private dbRoot = '';
   private page = 1;
-  private pageSize = 4; // 25
+  private pageSize = 25; // 25
   totalItems;
   totalPages;
 
@@ -27,18 +27,19 @@ export class HubbleNewsService {
     this.getNewsIndex();
    }
 
-  getAllnews(page: any): Observable<HubbleNews[]> {
-    const response = this.httpClient.jsonp<HubbleNews[]>(this.apiRoot + 'news?page=' + page, 'callback');
+  getAllnews(page: 1): Observable<HubbleNews[]> {
+    // const response = this.httpClient.jsonp<HubbleNews[]>(this.apiRoot + 'news?page=' + page, 'callback');
+    const response = this.httpClient.jsonp<HubbleNews[]>(this.apiRoot + 'news?page=1', 'callback');
     // console.log(response);
     return response;
   }
 
-  getAllNewsFromDB(page: any): Observable<HubbleNews[]> {
-    const response = this.httpClient.get<HubbleNews[]>('https://spacestuffbackend.herokuapp.com/api/news');
-    console.log(response);
-    console.log("response from db");
-    return response;
-  }
+  // getAllNewsFromDB(page: any): Observable<HubbleNews[]> {
+  //   const response = this.httpClient.get<HubbleNews[]>('https://spacestuffbackend.herokuapp.com/api/news');
+  //   console.log(response);
+  //   console.log("response from db");
+  //   return response;
+  // }
 
   getNews(id: number): Observable<HubbleNewsDetail> {
     const response =  this.httpClient.jsonp<HubbleNewsDetail>(this.apiRoot + 'news_release/' + id.toString(), 'callback');
@@ -48,7 +49,7 @@ export class HubbleNewsService {
 
   getNewsIndex() {
     // this.getAllNewsFromDB('all').subscribe (
-      this.getAllnews('all').subscribe (
+      this.getAllnews(1).subscribe (
         (response: HubbleNews[]) => {
         this.hubbleNewsIndex = response;
 

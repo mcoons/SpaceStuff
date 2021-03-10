@@ -13,7 +13,7 @@ export class HubbleVideosService {
   private apiRoot = '//hubblesite.org/api/v3/';
   private dbRoot = '';
   private page = 1;
-  private pageSize = 4;
+  private pageSize = 25;
   totalItems;
   totalPages;
 
@@ -40,7 +40,7 @@ export class HubbleVideosService {
     return response;
   }
 
-  getAllVideos(page: any): Observable<HubbleVideos[]> {
+  getAllVideos(page: 1): Observable<HubbleVideos[]> {
     const response = this.httpClient.jsonp<HubbleVideos[]>(this.apiRoot + 'videos?page=' + page, 'callback');
     // console.log(response);
     return response;
@@ -48,7 +48,7 @@ export class HubbleVideosService {
 
   getVideosIndex() {
     // this.getAllVideosFromDB('all').subscribe (
-      this.getAllVideos('all').subscribe (
+      this.getAllVideos(1).subscribe (
         (response: HubbleVideos[]) => {
         this.hubbleVideosIndex = response;
 

@@ -14,7 +14,7 @@ export class HubbleImagesService {
   private apiRoot = '//hubblesite.org/api/v3/';
   private dbRoot = '';
   private page = 1;
-  private pageSize = 4;
+  private pageSize = 25;
   totalItems;
   totalPages;
 
@@ -27,7 +27,7 @@ export class HubbleImagesService {
     this.getImageIndex();
    }
 
-  getAllImages(page: any): Observable<HubbleImage[]> {
+  getAllImages(page: 1): Observable<HubbleImage[]> {
     const response = this.httpClient.jsonp<HubbleImage[]>(this.apiRoot + 'images?page=' + page, 'callback');
     // console.log(response);
     return response;
@@ -36,7 +36,7 @@ export class HubbleImagesService {
 
   getImageIndex() {
     // this.getAllImagesFromDB('all').subscribe (
-      this.getAllImages('all').subscribe (
+      this.getAllImages(1).subscribe (
         (response: HubbleImage[]) => {
       this.hubbleImageIndex = response;
 
@@ -73,9 +73,6 @@ export class HubbleImagesService {
   getImage(id: number): Observable<HubbleImageDetail> {
     const response =  this.httpClient.jsonp<HubbleImageDetail>(this.apiRoot + 'image/' + id.toString(), 'callback');
     // console.log(response);
-
-    // POST IMAGE DETAIL TO BACKEND - cant use jsonp
-
 
     return response;
   }
