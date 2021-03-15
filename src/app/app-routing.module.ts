@@ -12,13 +12,13 @@ import { HubbleImagesComponent } from './hubble-images/hubble-images.component';
 import { HubbleVideosComponent } from './hubble-videos/hubble-videos.component';
 
 const routes: Routes = [
-  { path: 'articles', component: ArticlesComponent },
+  // { path: 'articles', component: ArticlesComponent },
   { path: 'hubble-news', component: HubbleNewsComponent },
   { path: 'hubble-images', component: HubbleImagesComponent },
   { path: 'hubble-videos', component: HubbleVideosComponent },
-  { path: 'pictures', component: PicturesComponent },
-  { path: 'videos', component: VideosComponent },
-  { path: 'babylon', component: BabylonComponent },
+  // { path: 'pictures', component: PicturesComponent },
+  // { path: 'videos', component: VideosComponent },
+  // { path: 'babylon', component: BabylonComponent },
   { path: 'about', component: AboutComponent },
   { path: '', redirectTo:  'about', pathMatch: 'full'}
 ];
