@@ -12,17 +12,24 @@
   <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="articles">Articles</a>
+        <a class="nav-link" routerLink="hubble-news">Articles</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="pictures">Pictures</a>
+        <a class="nav-link" routerLink="hubble-images">Pictures</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="videos">Videos</a>
+        <a class="nav-link" routerLink="hubble-videos">Videos</a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" routerLink="babylon">3D Stuff</a>
-      </li> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Hubble APIs
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="hubble-news">News</a>
+          <a class="dropdown-item" routerLink="hubble-images">Images</a>
+          <a class="dropdown-item" routerLink="hubble-videos">Videos</a>
+        </div>
+      </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="about">About</a>
       </li>
